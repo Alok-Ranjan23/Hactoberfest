@@ -8,3 +8,46 @@ Hello I'm Alok :sunglasses:
 Hey Daipu, sduf sdfdv sdfcv sfcdv.
 
 
+/*
+// Sample code to perform I/O:
+
+cin >> name;                            // Reading input from STDIN
+cout << "Hi, " << name << ".\n";        // Writing output to STDOUT
+
+// Warning: Printing unwanted or ill-formatted data to output will cause the test cases to fail
+*/
+
+// Write your code here
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+#define M 10000001
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    long arr[M+1];
+    memset(arr,-1,sizeof(arr));
+    for(long int i=2;i*i<=M;++i) {
+        if(arr[i] == -1) {
+            for(long j=i*2;j<=M;j+=i) {
+                arr[j] = 0;
+            }
+        }
+    }
+    
+    for(long i=2;i<=M;++i)  arr[i] += arr[i-1];
+    long int L,R,T;
+    cin>>T;
+    while(T--) {
+        cin>>L>>R;
+        if(L>R) {
+           swap(L,R);
+        }
+        cout<<arr[L-1] - arr[R]<<"\n";
+    }
+    return(0);
+}
